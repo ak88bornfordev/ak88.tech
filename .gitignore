@@ -1,0 +1,5 @@
+# Никогда не коммитить в репозиторий:
+.env
+telegram_state.json
+__pycache__/
+*.pyc

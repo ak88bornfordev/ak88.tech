@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Блог — Айдар Халиуллин</title>
+<meta name="description" content="Статьи о PHP, MySQL, CMS и веб-разработке от Айдара Халиуллина.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="nav-toggle" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">АХ</div>
+      <div>
+        <div class="brand-name">Айдар Халиуллин</div>
+        <div class="brand-role">Веб-разработчик</div>
+      </div>
+    </div>
+    <div class="status-line"><span class="status-dot"></span> в поиске работы</div>
+    <nav class="nav-main">
+      <a href="index.html#home"><span class="idx">01</span> Главная</a>
+      <a href="index.html#about"><span class="idx">02</span> Обо мне</a>
+      <a href="index.html#skills"><span class="idx">03</span> Навыки</a>
+      <a href="index.html#experience"><span class="idx">04</span> Опыт</a>
+      <a href="index.html#education"><span class="idx">05</span> Образование</a>
+      <a href="index.html#work"><span class="idx">06</span> Портфолио</a>
+      <a href="blog.html" class="active"><span class="idx">07</span> Блог</a>
+      <a href="ak88.html"><span class="idx">08</span> AK88</a>
+      <a href="index.html#contact"><span class="idx">09</span> Контакты</a>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="social-row">
+        <a href="tel:+79920751988" aria-label="Телефон">☏</a>
+        <a href="https://t.me/oneak1988" target="_blank" rel="noopener" aria-label="Telegram">TG</a>
+        <a href="mailto:ak88bornfordev@gmail.com" aria-label="Email">@</a>
+      </div>
+      <div class="copyright">© 2026 Айдар Халиуллин.<br>Все права защищены.</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section class="page-head">
+      <div class="container">
+        <div class="eyebrow">блог</div>
+        <h1 class="section-title">Все статьи</h1>
+        <p class="section-sub">Пишу о том, с чем реально сталкиваюсь на проектах за 13 лет в веб-разработке — без воды и без пересказа документации.</p>
+
+        <div class="filters">
+          <button class="filter-btn active" data-filter="all">Все</button>
+          <button class="filter-btn" data-filter="php">PHP / MySQL</button>
+          <button class="filter-btn" data-filter="cms">CMS</button>
+          <button class="filter-btn" data-filter="seo">SEO / аналитика</button>
+          <button class="filter-btn" data-filter="career">Карьера</button>
+        </div>
+
+        <div class="blog-grid">
+          <a class="blog-row" data-tags="php" href="post-opencart-mysql.html">
+            <span class="blog-date">02 июл 2026</span>
+            <div class="blog-info">
+              <h3>Как я ускорил интернет-магазин на OpenCart: разбор запросов MySQL</h3>
+              <p>Реальный кейс: где искать медленные запросы и какие индексы реально помогли.</p>
+            </div>
+            <span class="blog-tag">MySQL</span>
+          </a>
+          <a class="blog-row" data-tags="php" href="post-php-legacy.html">
+            <span class="blog-date">18 июн 2026</span>
+            <div class="blog-info">
+              <h3>PHP и jQuery: как поддерживать старый код и не бояться легаси</h3>
+              <p>Что делать, когда проекту 8 лет, а переписывать его с нуля никто не даст.</p>
+            </div>
+            <span class="blog-tag">PHP</span>
+          </a>
+          <a class="blog-row" data-tags="cms" href="post-cms-choice.html">
+            <span class="blog-date">03 июн 2026</span>
+            <div class="blog-info">
+              <h3>WordPress, Joomla или Tilda: как выбрать CMS под проект</h3>
+              <p>Сравнение трёх систем на реальных задачах агентства, а не по документации.</p>
+            </div>
+            <span class="blog-tag">CMS</span>
+          </a>
+          <a class="blog-row" data-tags="career" href="post-13-years.html">
+            <span class="blog-date">20 май 2026</span>
+            <div class="blog-info">
+              <h3>13 лет в веб-разработке: как менялся стек и почему я вернулся из руководителей в разработку</h3>
+              <p>От сайта аптечной сети до отдела ИТ-инфраструктуры и обратно к коду.</p>
+            </div>
+            <span class="blog-tag">Карьера</span>
+          </a>
+          <a class="blog-row" data-tags="seo" href="post-pharmacy-seo.html">
+            <span class="blog-date">29 апр 2026</span>
+            <div class="blog-info">
+              <h3>SEO для сайта аптечной сети: что реально сработало</h3>
+              <p>Без магии — структура каталога, скорость загрузки и локальная выдача.</p>
+            </div>
+            <span class="blog-tag">SEO</span>
+          </a>
+          <a class="blog-row" data-tags="seo" href="post-analytics-setup.html">
+            <span class="blog-date">11 апр 2026</span>
+            <div class="blog-info">
+              <h3>Яндекс.Метрика и Google Analytics: минимальный набор для старта</h3>
+              <p>Какие цели и события настроить в первую очередь, чтобы отчёты были не для галочки.</p>
+            </div>
+            <span class="blog-tag">Аналитика</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-foot">// собрано вручную, без шаблонов · Айдар Халиуллин © 2026</footer>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

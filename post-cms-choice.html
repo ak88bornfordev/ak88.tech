@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WordPress, Joomla или Tilda: как выбрать CMS под проект — Айдар Халиуллин</title>
+<meta name="description" content="Сравнение трёх систем на реальных задачах агентства, а не по документации.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="nav-toggle" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">АХ</div>
+      <div>
+        <div class="brand-name">Айдар Халиуллин</div>
+        <div class="brand-role">Веб-разработчик</div>
+      </div>
+    </div>
+    <div class="status-line"><span class="status-dot"></span> в поиске работы</div>
+    <nav class="nav-main">
+      <a href="index.html#home"><span class="idx">01</span> Главная</a>
+      <a href="index.html#about"><span class="idx">02</span> Обо мне</a>
+      <a href="index.html#skills"><span class="idx">03</span> Навыки</a>
+      <a href="index.html#experience"><span class="idx">04</span> Опыт</a>
+      <a href="index.html#education"><span class="idx">05</span> Образование</a>
+      <a href="index.html#work"><span class="idx">06</span> Портфолио</a>
+      <a href="blog.html" class="active"><span class="idx">07</span> Блог</a>
+      <a href="ak88.html"><span class="idx">08</span> AK88</a>
+      <a href="index.html#contact"><span class="idx">09</span> Контакты</a>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="social-row">
+        <a href="tel:+79920751988" aria-label="Телефон">☏</a>
+        <a href="https://t.me/oneak1988" target="_blank" rel="noopener" aria-label="Telegram">TG</a>
+        <a href="mailto:ak88bornfordev@gmail.com" aria-label="Email">@</a>
+      </div>
+      <div class="copyright">© 2026 Айдар Халиуллин.<br>Все права защищены.</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section class="post-head">
+      <div class="container">
+        <div class="post-meta"><span>03 июн 2026</span><span>CMS</span><span>6 мин чтения</span></div>
+        <h1 class="post-title">WordPress, Joomla или Tilda: как выбрать CMS под проект</h1>
+        <div class="post-cover">// сравнение админ-панелей сюда</div>
+      </div>
+    </section>
+
+    <section class="post-body">
+      <div class="container">
+        <p>В агентстве за один месяц могли идти параллельно и лендинг для рекламной акции, и корпоративный сайт с блогом, и промо-страница с формой заявки — и под каждую задачу CMS выбиралась разная. Вот на что я реально смотрю, а не на «что модно».</p>
+
+        <h2>Tilda — когда важна скорость запуска</h2>
+        <p>Для промо-страниц под конкретную рекламную кампанию, где нужно опубликовать сайт за один-два дня и в проекте нет сложной бизнес-логики, Tilda выигрывает почти всегда. Менеджер проекта или дизайнер может сам поправить текст без разработчика — для агентства с короткими дедлайнами это критично.</p>
+
+        <h2>WordPress — баланс гибкости и скорости разработки</h2>
+        <p>Для корпоративных сайтов с блогом, каталогом услуг и формами WordPress почти всегда оказывается разумным выбором: огромное количество готовых решений под типовые задачи, знакомая клиенту админка, при этом остаётся возможность написать свой плагин под нестандартную функцию.</p>
+        <div class="code-block"><span class="c">// пример простого кастомного шорткода для WordPress</span><br>
+function promo_banner_shortcode($atts) {<br>
+&nbsp;&nbsp;$atts = shortcode_atts([<span class="s">'text'</span> =&gt; <span class="s">''</span>], $atts);<br>
+&nbsp;&nbsp;return <span class="s">'&lt;div class="promo-banner"&gt;'</span> . esc_html($atts[<span class="s">'text'</span>]) . <span class="s">'&lt;/div&gt;'</span>;<br>
+}<br>
+add_shortcode(<span class="s">'promo'</span>, <span class="s">'promo_banner_shortcode'</span>);</div>
+
+        <h2>Joomla — когда нужна сложная структура прав доступа</h2>
+        <p>Joomla реже была первым выбором, но выручала на проектах с несколькими уровнями пользователей и сложной структурой разделов — например, для внутренних порталов и сайтов с закрытыми разделами для разных групп клиентов. Встроенная система прав доступа там гибче, чем в WordPress «из коробки».</p>
+
+        <h2>Как выбираю на практике</h2>
+        <ul>
+          <li>Одна рекламная страница, короткий срок жизни — Tilda</li>
+          <li>Постоянный сайт компании с развитием контента — WordPress</li>
+          <li>Сложная структура доступов или разделов — Joomla</li>
+          <li>Интернет-магазин с каталогом на тысячи товаров — отдельно OpenCart</li>
+        </ul>
+
+        <p>Выбор CMS — это не вопрос вкуса, а вопрос задачи, срока и того, кто будет вести сайт после сдачи проекта. Универсального победителя среди этих систем нет.</p>
+        <div class="post-tags"><span class="tag">CMS</span><span class="tag">WordPress</span><span class="tag">Joomla</span><span class="tag">Tilda</span></div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="post-nav">
+        <a href="post-php-legacy.html"><span class="lbl">← назад</span>PHP и jQuery: как поддерживать старый код</a>
+        <a href="post-13-years.html"><span class="lbl">следующая статья →</span>13 лет в веб-разработке</a>
+      </div>
+    </div>
+
+    <footer class="site-foot">// собрано вручную, без шаблонов · Айдар Халиуллин © 2026</footer>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

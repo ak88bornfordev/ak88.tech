@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как я ускорил интернет-магазин на OpenCart: разбор запросов MySQL — Айдар Халиуллин</title>
+<meta name="description" content="Реальный кейс оптимизации магазина на OpenCart: где искать медленные запросы и какие индексы реально помогли.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="nav-toggle" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">АХ</div>
+      <div>
+        <div class="brand-name">Айдар Халиуллин</div>
+        <div class="brand-role">Веб-разработчик</div>
+      </div>
+    </div>
+    <div class="status-line"><span class="status-dot"></span> в поиске работы</div>
+    <nav class="nav-main">
+      <a href="index.html#home"><span class="idx">01</span> Главная</a>
+      <a href="index.html#about"><span class="idx">02</span> Обо мне</a>
+      <a href="index.html#skills"><span class="idx">03</span> Навыки</a>
+      <a href="index.html#experience"><span class="idx">04</span> Опыт</a>
+      <a href="index.html#education"><span class="idx">05</span> Образование</a>
+      <a href="index.html#work"><span class="idx">06</span> Портфолио</a>
+      <a href="blog.html" class="active"><span class="idx">07</span> Блог</a>
+      <a href="ak88.html"><span class="idx">08</span> AK88</a>
+      <a href="index.html#contact"><span class="idx">09</span> Контакты</a>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="social-row">
+        <a href="tel:+79920751988" aria-label="Телефон">☏</a>
+        <a href="https://t.me/oneak1988" target="_blank" rel="noopener" aria-label="Telegram">TG</a>
+        <a href="mailto:ak88bornfordev@gmail.com" aria-label="Email">@</a>
+      </div>
+      <div class="copyright">© 2026 Айдар Халиуллин.<br>Все права защищены.</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section class="post-head">
+      <div class="container">
+        <div class="post-meta"><span>02 июл 2026</span><span>MySQL</span><span>7 мин чтения</span></div>
+        <h1 class="post-title">Как я ускорил интернет-магазин на OpenCart: разбор запросов MySQL</h1>
+        <div class="post-cover">// план запроса EXPLAIN сюда</div>
+      </div>
+    </section>
+
+    <section class="post-body">
+      <div class="container">
+        <p>Небольшой интернет-магазин на OpenCart, каталог около 40 тысяч товаров. Страница категории с фильтрами грузилась 3–4 секунды — для покупателя с мобильного интернета это почти гарантированный уход со страницы. Ниже — что помогло на самом деле, без переезда на другой движок.</p>
+
+        <h2>Шаг 1. Смотреть в лог медленных запросов, а не гадать</h2>
+        <p>Первым делом включил <code>slow_query_log</code> в MySQL и оставил магазин под обычной нагрузкой на сутки. Список медленных запросов сразу показал, что дело не в одном «тяжёлом» месте, а в фильтрации товаров по нескольким атрибутам одновременно — цена, наличие, категория.</p>
+
+        <h2>Шаг 2. Составной индекс под реальный фильтр</h2>
+        <div class="code-block"><span class="c">-- было: полный перебор таблицы товаров при каждом фильтре</span><br>
+CREATE INDEX idx_product_filter<br>
+&nbsp;&nbsp;ON oc_product (status, quantity, price);</div>
+        <p>Индекс именно в этом порядке полей — сначала то, что фильтруется всегда (статус товара), затем наличие и цена — сократил время выборки для страницы категории с 1.8 секунды до 60 миллисекунд.</p>
+
+        <h2>Шаг 3. Кэширование дерева категорий</h2>
+        <p>Дерево категорий в OpenCart по умолчанию пересчитывается почти на каждой странице. Вынес его в кэш на файловой системе с инвалидацией только при изменении категорий из админки — это убрало десятки повторяющихся запросов на каждый визит.</p>
+
+        <h2>Шаг 4. Изображения и ленивая загрузка</h2>
+        <ul>
+          <li>Сжал изображения товаров без потери качества — вес страницы категории упал почти вдвое</li>
+          <li>Добавил <code>loading="lazy"</code> для карточек товаров ниже первого экрана</li>
+          <li>Убрал неиспользуемые JS-модули темы, которые грузились на каждой странице «на всякий случай»</li>
+        </ul>
+
+        <h2>Результат</h2>
+        <p>Страница категории стала открываться за 700–900 мс вместо 3–4 секунд, а конверсия из просмотра каталога в добавление в корзину выросла — хотя это уже, конечно, эффект не только от скорости. Самый большой урок для себя: прежде чем что-либо менять в коде движка, нужно посмотреть, что реально происходит на уровне базы данных — обычно там и находится настоящая причина.</p>
+        <div class="post-tags"><span class="tag">MySQL</span><span class="tag">OpenCart</span><span class="tag">PHP</span></div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="post-nav">
+        <a href="blog.html"><span class="lbl">← назад</span>Все статьи блога</a>
+        <a href="post-php-legacy.html"><span class="lbl">следующая статья →</span>PHP и jQuery: как поддерживать старый код</a>
+      </div>
+    </div>
+
+    <footer class="site-foot">// собрано вручную, без шаблонов · Айдар Халиуллин © 2026</footer>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHP и jQuery: как поддерживать старый код и не бояться легаси — Айдар Халиуллин</title>
+<meta name="description" content="Что делать, когда проекту 8 лет, а переписывать его с нуля никто не даст.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="nav-toggle" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">АХ</div>
+      <div>
+        <div class="brand-name">Айдар Халиуллин</div>
+        <div class="brand-role">Веб-разработчик</div>
+      </div>
+    </div>
+    <div class="status-line"><span class="status-dot"></span> в поиске работы</div>
+    <nav class="nav-main">
+      <a href="index.html#home"><span class="idx">01</span> Главная</a>
+      <a href="index.html#about"><span class="idx">02</span> Обо мне</a>
+      <a href="index.html#skills"><span class="idx">03</span> Навыки</a>
+      <a href="index.html#experience"><span class="idx">04</span> Опыт</a>
+      <a href="index.html#education"><span class="idx">05</span> Образование</a>
+      <a href="index.html#work"><span class="idx">06</span> Портфолио</a>
+      <a href="blog.html" class="active"><span class="idx">07</span> Блог</a>
+      <a href="ak88.html"><span class="idx">08</span> AK88</a>
+      <a href="index.html#contact"><span class="idx">09</span> Контакты</a>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="social-row">
+        <a href="tel:+79920751988" aria-label="Телефон">☏</a>
+        <a href="https://t.me/oneak1988" target="_blank" rel="noopener" aria-label="Telegram">TG</a>
+        <a href="mailto:ak88bornfordev@gmail.com" aria-label="Email">@</a>
+      </div>
+      <div class="copyright">© 2026 Айдар Халиуллин.<br>Все права защищены.</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section class="post-head">
+      <div class="container">
+        <div class="post-meta"><span>18 июн 2026</span><span>PHP</span><span>6 мин чтения</span></div>
+        <h1 class="post-title">PHP и jQuery: как поддерживать старый код и не бояться легаси</h1>
+        <div class="post-cover">// фрагмент кода сюда</div>
+      </div>
+    </section>
+
+    <section class="post-body">
+      <div class="container">
+        <p>За 13 лет через мои руки прошло немало проектов, которым на момент, когда я к ним подключался, было уже по 5–8 лет. Полностью переписать такой код «правильно» почти никогда не разрешают — бизнес не готов останавливать продажи ради рефакторинга. Вот как я работаю с легаси на PHP без паники.</p>
+
+        <h2>Сначала — не трогать то, что работает</h2>
+        <p>Первое правило: если функция работает и покрыта реальными сценариями использования, не переписывать её «из принципа». Легаси-код обычно уже прошёл проверку боем — там учтены странные крайние случаи, о которых новый разработчик даже не подозревает.</p>
+
+        <h2>Изоляция нового кода от старого</h2>
+        <div class="code-block"><span class="c">// новый функционал — в отдельном неймспейсе,</span><br>
+<span class="c">// не смешиваем со старыми глобальными функциями</span><br>
+namespace App\Modules\Promo;<br><br>
+class PromoService {<br>
+&nbsp;&nbsp;public function apply($order) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c">// новая логика здесь, старый код не трогаем</span><br>
+&nbsp;&nbsp;}<br>
+}</div>
+        <p>Новый функционал пишу в отдельных классах и неймспейсах, а со старым кодом соединяю через тонкий слой-адаптер. Так легаси постепенно окружается новым, более тестируемым кодом, а не переписывается целиком за один рывок.</p>
+
+        <h2>jQuery — это не всегда плохо</h2>
+        <p>Есть модный тезис «jQuery устарел, надо всё на современном стеке». На практике, если страница на 90% статична и там нужно повесить пару обработчиков и AJAX-запрос, jQuery решает задачу за десять строк без сборки, бандлеров и лишней инфраструктуры. Меняю стек только там, где это реально того стоит — например, в интерактивных формах с большим количеством состояний.</p>
+
+        <h2>Три правила для спокойной работы с легаси</h2>
+        <ul>
+          <li>Перед изменением — понять, зачем код написан именно так, а не переписывать сходу</li>
+          <li>Любое изменение старого кода — с ручным тестированием сценариев, которые точно затронуты</li>
+          <li>Документировать не «как написано», а «почему написано так» — это экономит время следующему разработчику, часто это снова я сам через полгода</li>
+        </ul>
+
+        <p>Легаси-код не враг — это накопленный опыт всех, кто работал над проектом до тебя. Задача не бороться с ним, а аккуратно встраивать новое рядом.</p>
+        <div class="post-tags"><span class="tag">PHP</span><span class="tag">jQuery</span><span class="tag">Легаси</span></div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="post-nav">
+        <a href="post-opencart-mysql.html"><span class="lbl">← назад</span>Как я ускорил интернет-магазин на OpenCart</a>
+        <a href="post-cms-choice.html"><span class="lbl">следующая статья →</span>WordPress, Joomla или Tilda</a>
+      </div>
+    </div>
+
+    <footer class="site-foot">// собрано вручную, без шаблонов · Айдар Халиуллин © 2026</footer>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
