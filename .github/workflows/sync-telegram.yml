@@ -45,7 +45,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./                # папка, откуда берём файлы
-          server-dir: ./               # папка на хостинге (обычно корень сайта)
+          server-dir: /www/ak88.tech/  # корень сайта на REG.RU
           # Заливаем только ak88.html, чтобы случайно не затронуть остальной сайт:
           include: |
             ak88.html
