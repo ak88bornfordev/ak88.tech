@@ -5,6 +5,9 @@ on:
     - cron: "*/15 * * * *"   # проверять канал каждые 15 минут
   workflow_dispatch: {}       # + кнопка "Run workflow" вручную на GitHub
 
+permissions:
+  contents: write   # без этого git push будет получать 403
+
 jobs:
   sync-and-deploy:
     runs-on: ubuntu-latest
