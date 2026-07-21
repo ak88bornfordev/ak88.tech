@@ -1,0 +1,55 @@
+name: Sync Telegram AK88 and deploy to REG.RU
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # проверять канал каждые 15 минут
+  workflow_dispatch: {}       # + кнопка "Run workflow" вручную на GitHub
+
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run Telegram sync script
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: python3 sync_telegram.py
+
+      # Сохраняем изменения в самом репозитории (ak88.html + telegram_state.json),
+      # чтобы при следующем запуске скрипт знал, какие посты уже обработаны.
+      - name: Commit changes back to repo
+        run: |
+          git config user.name "telegram-sync-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add ak88.html telegram_state.json
+          git diff --cached --quiet || git commit -m "Sync AK88 posts from Telegram"
+          git push
+
+      # Заливаем обновлённый ak88.html на хостинг REG.RU по FTP.
+      # Если хотите заливать весь сайт целиком, а не только один файл —
+      # уберите параметр "server-dir" ограничение и настройте include/exclude ниже.
+      - name: Deploy ak88.html to REG.RU via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./                # папка, откуда берём файлы
+          server-dir: ./               # папка на хостинге (обычно корень сайта)
+          # Заливаем только ak88.html, чтобы случайно не затронуть остальной сайт:
+          include: |
+            ak88.html
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            .env
+            .env.example
+            telegram_state.json
